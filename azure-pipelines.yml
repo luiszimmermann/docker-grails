@@ -13,7 +13,5 @@ steps:
 #- script: docker build -f Dockerfile -t $(imageName) .
 #displayName: 'docker build'
 - script: |
-    curl -sO https://bootstrap.pypa.io/get-pip.py
-    python get-pip.py --user
     pip install awscli --upgrade --user
   displayName: 'aws install'
