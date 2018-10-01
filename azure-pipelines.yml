@@ -17,8 +17,8 @@ variables:
 container: builder
 
 steps:
-- script: |
-    aws --version
-    displayName: 'installing aws cli'
 - script: docker build -f Dockerfile -t $(imageName) .
   displayName: 'docker build'
+- script: |
+    $(aws ecr get-login --no-include-email --region sa-east-1)
+    docker push $(imageName)
