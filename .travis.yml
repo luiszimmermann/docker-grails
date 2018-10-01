@@ -10,10 +10,6 @@ addons:
 
 language: generic
 
-before_install:
-  - pip install --user --upgrade pip
-  - pip install --user awscli
-
 install:
   - pip install --user awscli
   - export PATH=$PATH:$HOME/.local/bin # put aws in the path
