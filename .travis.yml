@@ -16,10 +16,8 @@ before_install:
 
 install:
   - pip install --user awscli
-  - docker pull openjdk:8-jdk
-
-after_install:
   - export PATH=$PATH:$HOME/.local/bin # put aws in the path
+  - docker pull openjdk:8-jdk
 
 script:
   - docker --version
