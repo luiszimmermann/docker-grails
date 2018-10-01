@@ -6,6 +6,7 @@ addons:
   apt:
     packages:
       - docker-ce
+      - python
 
 before_install:
   - docker pull openjdk:8-jdk
@@ -15,6 +16,7 @@ script:
 
 after_success:
   - docker --version
+  - pip install --upgrade pip
   - pip install --user awscli # install aws cli w/o sudo
   - export PATH=$PATH:$HOME/.local/bin # put aws in the path
   - eval $(aws ecr get-login --no-include-email --region us-east-1) #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
