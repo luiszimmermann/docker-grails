@@ -1,6 +1,7 @@
 FROM openjdk:8-jdk
 
 ARG GRAILS_VERSION=3.3.8
+ENV GRAILS_VERSION ${APP_ENV}
 
 WORKDIR /usr/lib/jvm
 RUN wget https://github.com/grails/grails-core/releases/download/v$GRAILS_VERSION/grails-$GRAILS_VERSION.zip && \

@@ -21,7 +21,7 @@ install:
 
 script:
   - docker --version
-  - docker build -t grails:$GRAILS_VERSION -e GRAILS_VERSION=$GRAILS_VERSION .
+  - docker build -t grails:$GRAILS_VERSION --build-arg GRAILS_VERSION=$GRAILS_VERSION .
 
 after_success:
   - eval $(aws ecr get-login --no-include-email --region sa-east-1) #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
