@@ -7,8 +7,13 @@ pool:
   vmImage: 'Ubuntu 16.04'
 
 variables:
-  imageName: 'luiszbm/grails:3.3.8'
+  imageName: '431892402949.dkr.ecr.sa-east-1.amazonaws.com/asaas/grails:3.3.8'
 
 steps:
+- script: |
+    curl -O https://bootstrap.pypa.io/get-pip.py
+    python get-pip.py
+    pip install awscli --upgrade
+    displayName: 'installing aws cli'
 - script: docker build -f Dockerfile -t $(imageName) .
   displayName: 'docker build'
