@@ -3,22 +3,21 @@
 # Add steps that use Docker Compose, tag images, push to a registry, run an image, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
-resources:
-  containers:
-  - container: builder
-    image: luiszbm/ubuntu-aws-cli
-
 pool:
   vmImage: 'Ubuntu 16.04'
 
 variables:
-  imageName: '431892402949.dkr.ecr.sa-east-1.amazonaws.com/asaas/grails:3.3.8'
-
-container: builder
+  imageName: '$(dockerId)/grails:3.3.8'
 
 steps:
 - script: docker build -f Dockerfile -t $(imageName) .
   displayName: 'docker build'
 - script: |
+    apt-get update && apt-get install -y -qq python curl
+    curl -sO https://bootstrap.pypa.io/get-pip.py
+    python get-pip.py
+    pip install awscli --upgrade
+    echo complete -C '/usr/local/bin/aws_completer' aws >> ~/.bashrc
     $(aws ecr get-login --no-include-email --region sa-east-1)
     docker push $(imageName)
+  displayName: 'aws install'
