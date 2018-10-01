@@ -13,10 +13,9 @@ steps:
 - script: docker build -f Dockerfile -t $(imageName) .
   displayName: 'docker build'
 - script: |
-    apt-get update && apt-get install -y -qq python curl
     curl -sO https://bootstrap.pypa.io/get-pip.py
-    python get-pip.py
-    pip install awscli --upgrade
+    python get-pip.py --user
+    pip install awscli --upgrade --user
     echo complete -C '/usr/local/bin/aws_completer' aws >> ~/.bashrc
     $(aws ecr get-login --no-include-email --region sa-east-1)
     docker push $(imageName)
