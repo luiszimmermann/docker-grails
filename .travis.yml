@@ -19,6 +19,6 @@ script:
   - docker build -t grails:3.3.8 .
 
 after_success:
-  - eval $(aws ecr get-login --no-include-email --region us-east-1) #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
+  - eval $(aws ecr get-login --no-include-email --region sa-east-1) #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
   - docker tag grails:3.3.8 $dockerId/grails:3.3.8
   - docker push $dockerId/grails:3.3.8
