@@ -9,7 +9,7 @@ addons:
       - python
 
 before_install:
-  - pip install --upgrade pip
+  - pip install --user --upgrade pip
   - pip install --user awscli
   - export PATH=$PATH:$HOME/.local/bin # put aws in the path
   - docker pull openjdk:8-jdk
