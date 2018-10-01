@@ -10,6 +10,10 @@ addons:
 
 language: generic
 
+env:
+- GRAILS_VERSION=3.3.8
+- GRAILS_VERSION=2.5.5
+
 install:
   - pip install --user awscli
   - export PATH=$PATH:$HOME/.local/bin # put aws in the path
@@ -17,9 +21,9 @@ install:
 
 script:
   - docker --version
-  - docker build -t grails:3.3.8 .
+  - docker build -t grails:$GRAILS_VERSION -e GRAILS_VERSION=$GRAILS_VERSION .
 
 after_success:
   - eval $(aws ecr get-login --no-include-email --region sa-east-1) #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
-  - docker tag grails:3.3.8 $dockerId/grails:3.3.8
-  - docker push $dockerId/grails:3.3.8
+  - docker tag grails:$GRAILS_VERSION $dockerId/grails:$GRAILS_VERSION
+  - docker push $dockerId/grails:$GRAILS_VERSION
