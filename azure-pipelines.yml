@@ -13,5 +13,6 @@ steps:
 #- script: docker build -f Dockerfile -t $(imageName) .
 #displayName: 'docker build'
 - script: |
+    pip install --upgrade pip
     pip install awscli --upgrade --user
   displayName: 'aws install'
