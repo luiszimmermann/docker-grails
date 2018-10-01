@@ -8,11 +8,18 @@ addons:
       - docker-ce
       - python
 
+language: generic
+
 before_install:
   - pip install --user --upgrade pip
   - pip install --user awscli
-  - export PATH=$PATH:$HOME/.local/bin # put aws in the path
+
+install:
+  - pip install --user awscli
   - docker pull openjdk:8-jdk
+
+after_install:
+  - export PATH=$PATH:$HOME/.local/bin # put aws in the path
 
 script:
   - docker --version
