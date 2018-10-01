@@ -16,7 +16,4 @@ steps:
     curl -sO https://bootstrap.pypa.io/get-pip.py
     python get-pip.py --user
     pip install awscli --upgrade --user
-    echo complete -C '/usr/local/bin/aws_completer' aws >> ~/.bashrc
-    $(aws ecr get-login --no-include-email --region sa-east-1)
-    docker push $(imageName)
   displayName: 'aws install'
