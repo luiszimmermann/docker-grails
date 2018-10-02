@@ -28,5 +28,5 @@ workflows:
 
   build:
     jobs:
-      - grails3
-      - grails2
+      - grails-3.3.8
+      - grails-2.5.5
