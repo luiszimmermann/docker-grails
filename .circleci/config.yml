@@ -3,30 +3,25 @@ defaults: &defaults
     - image: docker:18.06.1-ce
       environment:
         GRAILS_VERSION: 3.3.8
+  steps:
+    - checkout
+    - setup_remote_docker:
+        docker_layer_caching: true
+    - run:
+        name: Build and push Docker image
+        command: |
+          docker build -t grails:$GRAILS_VERSION --build-arg GRAILS_VERSION=$GRAILS_VERSION .
 
 version: 2
 jobs:
-  grails3:
+  grails-3.3.8:
     <<: *defaults
-    steps:
-      - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
-      - run:
-          name: Build and push Docker image
-          command: |
-            docker build -t grails:3.3.8 --build-arg GRAILS_VERSION=3.3.8 .
 
-  grails2:
+  grails-2.5.5:
     <<: *defaults
-    steps:
-      - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
-      - run:
-          name: Build and push Docker image
-          command: |
-            docker build -t grails:2.5.5 --build-arg GRAILS_VERSION=2.5.5 .
+    docker:
+        environment:
+          GRAILS_VERSION: 2.5.5
 
 workflows:
   version: 2
