@@ -11,10 +11,11 @@ addons:
 language: generic
 
 env:
-- GRAILS_VERSION=3.3.8
-- GRAILS_VERSION=2.5.5
-- OS=ubuntu
-- OS=alpine
+  matrix:
+    - GRAILS_VERSION=3.3.8    OS=ubuntu
+    - GRAILS_VERSION=3.3.8    OS=alpine
+    - GRAILS_VERSION=2.5.5    OS=ubuntu
+    - GRAILS_VERSION=2.5.5    OS=alpine
 
 install:
   - pip install --user awscli
@@ -23,7 +24,7 @@ install:
 
 script:
   - docker --version
-  - docker build -t -f Dockerfile.$OS grails:$GRAILS_VERSION-$OS --build-arg GRAILS_VERSION=$GRAILS_VERSION .
+  - docker build -t grails:$GRAILS_VERSION-$OS -f Dockerfile.$OS --build-arg GRAILS_VERSION=$GRAILS_VERSION .
 
 after_success:
   - eval $(aws ecr get-login --no-include-email --region sa-east-1) #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
