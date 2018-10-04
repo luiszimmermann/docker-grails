@@ -3,6 +3,10 @@ FROM openjdk:8-jdk-slim
 ARG GRAILS_VERSION=3.3.8
 ENV GRAILS_VERSION ${GRAILS_VERSION}
 
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends ca-certificates curl wget && \
+    rm -rf /var/lib/apt/lists/*
+
 WORKDIR /usr/lib/jvm
 RUN wget https://github.com/grails/grails-core/releases/download/v$GRAILS_VERSION/grails-$GRAILS_VERSION.zip && \
     unzip grails-$GRAILS_VERSION.zip && \
