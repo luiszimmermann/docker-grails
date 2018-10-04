@@ -1,11 +1,12 @@
-defaults: &defaults
-  docker:
-    - image: docker:18.06.1-ce
+executors:
+  docker-run-executor:
+    docker:
+      - image: docker:18.06.1-ce
 
-version: 2
+version: 2.1
 jobs:
   grails-3.3.8:
-    <<: *defaults
+    executor: docker-run-executor
     steps:
       - checkout
       - setup_remote_docker:
@@ -16,7 +17,7 @@ jobs:
             docker build -t grails:3.3.8 --build-arg GRAILS_VERSION=3.3.8 .
 
   grails-2.5.5:
-    <<: *defaults
+    executor: docker-run-executor
     steps:
       - checkout
       - setup_remote_docker:
