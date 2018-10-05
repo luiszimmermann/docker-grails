@@ -22,9 +22,14 @@ install:
   - export PATH=$PATH:$HOME/.local/bin # put aws in the path
   - docker pull openjdk:8-jdk
 
-script:
+before_script:
   - docker --version
   - docker build -t grails:$GRAILS_VERSION-$OS --build-arg GRAILS_VERSION=$GRAILS_VERSION ./$OS
+
+script:
+  - docker run -it --rm --name grails grails:$GRAILS_VERSION-$OS grails --version | grep -q $GRAILS_VERSION
+  - docker run -d --name grails grails:$GRAILS_VERSION-$OS
+  - docker ps | grep -q grails
 
 after_script:
   - docker images
