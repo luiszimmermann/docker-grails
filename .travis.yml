@@ -28,8 +28,6 @@ before_script:
 
 script:
   - docker run -it --rm --name grails-$GRAILS_VERSION-$OS grails:$GRAILS_VERSION-$OS grails --version | grep -q $GRAILS_VERSION
-  - docker run -d --name grails-$GRAILS_VERSION-$OS grails:$GRAILS_VERSION-$OS
-  - docker ps | grep -q grails-$GRAILS_VERSION-$OS
 
 after_script:
   - docker images
