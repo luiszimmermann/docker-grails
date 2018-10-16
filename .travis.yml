@@ -30,7 +30,7 @@ before_script:
     if [ -z $ENV ]; then
       docker build -t grails:$GRAILS_VERSION-$OS --build-arg GRAILS_VERSION=$GRAILS_VERSION ./$OS
     else
-      docker build -f Dockerfile.dev -t grails:$GRAILS_VERSION-$OS-$ENV --build-arg GRAILS_VERSION=$GRAILS_VERSION ./$OS
+      docker build -f ./$OS/Dockerfile.dev -t grails:$GRAILS_VERSION-$OS-$ENV --build-arg GRAILS_VERSION=$GRAILS_VERSION ./$OS
     fi
 
 script:
