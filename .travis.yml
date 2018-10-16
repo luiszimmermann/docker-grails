@@ -28,18 +28,21 @@ before_script:
   - docker --version
   - |
     if [ -z $ENV ]; then
+      export IMAGE_TAG=$GRAILS_VERSION-$OS
       docker build -t grails:$GRAILS_VERSION-$OS --build-arg GRAILS_VERSION=$GRAILS_VERSION ./$OS
     else
+    export IMAGE_TAG=$GRAILS_VERSION-$OS-$ENV
       docker build -f ./$OS/Dockerfile.dev -t grails:$GRAILS_VERSION-$OS-$ENV --build-arg GRAILS_VERSION=$GRAILS_VERSION ./$OS
     fi
 
 script:
-  - docker run -it --rm --name grails-$GRAILS_VERSION-$OS grails:$GRAILS_VERSION-$OS grails --version | grep -q $GRAILS_VERSION
+  - docker run -it --rm --name grails-$IMAGE_TAG grails:$IMAGE_TAG grails --version | grep -q $GRAILS_VERSION
+
 
 after_script:
   - docker images
 
 after_success:
   - eval $(aws ecr get-login --no-include-email --region sa-east-1) #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
-  - docker tag grails:$GRAILS_VERSION-$OS $dockerId/grails:$GRAILS_VERSION-$OS
-  - docker push $dockerId/grails:$GRAILS_VERSION-$OS
+  - docker tag grails:$IMAGE_TAG $dockerId/grails:$IMAGE_TAG
+  - docker push $dockerId/grails:$IMAGE_TAG
