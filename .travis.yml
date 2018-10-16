@@ -13,9 +13,11 @@ env:
   - GRAILS_VERSION=3.3.8    OS=stretch
   - GRAILS_VERSION=3.3.8    OS=stretch-slim
   - GRAILS_VERSION=3.3.8    OS=alpine
+  - GRAILS_VERSION=3.3.8    OS=alpine   ENV=dev
   - GRAILS_VERSION=2.5.5    OS=stretch
   - GRAILS_VERSION=2.5.5    OS=stretch-slim
   - GRAILS_VERSION=2.5.5    OS=alpine
+  - GRAILS_VERSION=2.5.5    OS=alpine   ENV=dev
 
 install:
   - pip install --user awscli
@@ -24,7 +26,12 @@ install:
 
 before_script:
   - docker --version
-  - docker build -t grails:$GRAILS_VERSION-$OS --build-arg GRAILS_VERSION=$GRAILS_VERSION ./$OS
+  - |
+    if [ -z $ENV ]; then
+      docker build -t grails:$GRAILS_VERSION-$OS --build-arg GRAILS_VERSION=$GRAILS_VERSION ./$OS
+    else
+      docker build -f Dockerfile.dev -t grails:$GRAILS_VERSION-$OS-$ENV --build-arg GRAILS_VERSION=$GRAILS_VERSION ./$OS
+    fi
 
 script:
   - docker run -it --rm --name grails-$GRAILS_VERSION-$OS grails:$GRAILS_VERSION-$OS grails --version | grep -q $GRAILS_VERSION
