@@ -13,9 +13,9 @@ ENV GRAILS_HOME /usr/lib/jvm/grails
 ENV PATH $GRAILS_HOME/bin:$PATH
 
 RUN mkdir /app
-RUN mkdir /app2
-WORKDIR /app2
+RUN mkdir /work
+WORKDIR /work
 
 RUN apk update && apk add rsync && rm -rf /var/cache/apk/*
 
-RUN rsync -a /app /app2
+RUN rsync -a /app/ /work
