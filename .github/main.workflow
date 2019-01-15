@@ -9,29 +9,29 @@ workflow "Workflow" {
 
 action "3.3.9" {
   uses = "actions/docker/cli@c08a5fc9e0286844156fefff2c141072048141f6"
-  runs = "build -t grails:$GRAILS_VERSION-$OS --build-arg GRAILS_VERSION=$GRAILS_VERSION ./$OS"
   env = {
     OS = "stretch"
     GRAILS_VERSION = "3.3.9"
   }
+  args = "build -t grails:$GRAILS_VERSION-$OS --build-arg GRAILS_VERSION=$GRAILS_VERSION ./$OS"
 }
 
 action "3.3.8" {
   uses = "actions/docker/cli@c08a5fc9e0286844156fefff2c141072048141f6"
-  runs = "build -t grails:$GRAILS_VERSION-$OS --build-arg GRAILS_VERSION=$GRAILS_VERSION ./$OS"
   env = {
     OS = "stretch"
     GRAILS_VERSION = "3.3.8"
   }
+  args = "build -t grails:$GRAILS_VERSION-$OS --build-arg GRAILS_VERSION=$GRAILS_VERSION ./$OS"
 }
 
 action "2.5.5" {
   uses = "actions/docker/cli@c08a5fc9e0286844156fefff2c141072048141f6"
-  runs = "build -t grails:$GRAILS_VERSION-$OS --build-arg GRAILS_VERSION=$GRAILS_VERSION ./$OS"
   env = {
     OS = "stretch"
     GRAILS_VERSION = "2.5.5"
   }
+  args = "build -t grails:$GRAILS_VERSION-$OS --build-arg GRAILS_VERSION=$GRAILS_VERSION ./$OS"
 }
 
 action "GitHub Action for AWS" {
