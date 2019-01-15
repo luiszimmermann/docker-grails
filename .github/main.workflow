@@ -37,5 +37,10 @@ action "2.5.5" {
 action "GitHub Action for AWS" {
   uses = "actions/aws/cli@8d318706868c00929f57a0b618504dcdda52b0c9"
   needs = ["2.5.5", "3.3.8", "3.3.9"]
-  secrets = ["AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY"]
+  secrets = [
+    "AWS_ACCESS_KEY_ID",
+    "AWS_SECRET_ACCESS_KEY",
+    "AWS_ECR",
+  ]
+  runs = "eval $(aws ecr get-login --no-include-email --region sa-east-1)"
 }
