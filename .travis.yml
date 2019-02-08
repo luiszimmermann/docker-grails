@@ -11,17 +11,17 @@ addons:
 
 env:
   - GRAILS_VERSION=3.3.9    OS=stretch
-  - GRAILS_VERSION=3.3.9    OS=stretch-slim
-  - GRAILS_VERSION=3.3.9    OS=alpine
-  - GRAILS_VERSION=3.3.9    OS=alpine   ENV=dev
+#  - GRAILS_VERSION=3.3.9    OS=stretch-slim
+#  - GRAILS_VERSION=3.3.9    OS=alpine
+  #- GRAILS_VERSION=3.3.9    OS=alpine   ENV=dev
   - GRAILS_VERSION=3.3.8    OS=stretch
-  - GRAILS_VERSION=3.3.8    OS=stretch-slim
-  - GRAILS_VERSION=3.3.8    OS=alpine
-  - GRAILS_VERSION=3.3.8    OS=alpine   ENV=dev
+#  - GRAILS_VERSION=3.3.8    OS=stretch-slim
+#  - GRAILS_VERSION=3.3.8    OS=alpine
+#  - GRAILS_VERSION=3.3.8    OS=alpine   ENV=dev
   - GRAILS_VERSION=2.5.5    OS=stretch
-  - GRAILS_VERSION=2.5.5    OS=stretch-slim
-  - GRAILS_VERSION=2.5.5    OS=alpine
-  - GRAILS_VERSION=2.5.5    OS=alpine   ENV=dev
+#  - GRAILS_VERSION=2.5.5    OS=stretch-slim
+#  - GRAILS_VERSION=2.5.5    OS=alpine
+#  - GRAILS_VERSION=2.5.5    OS=alpine   ENV=dev
 
 install:
   - pip install --user awscli
