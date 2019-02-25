@@ -42,4 +42,5 @@ after_success:
   - docker tag grails:$IMAGE_TAG $dockerId/grails:$IMAGE_TAG
   - docker push $dockerId/grails:$IMAGE_TAG
   - echo "$dockerHubPass" | docker login -u "$dockerHubId" --password-stdin
+  - docker tag grails:$IMAGE_TAG $dockerHubId/grails:$IMAGE_TAG
   - docker push $dockerHubId/grails:$IMAGE_TAG
