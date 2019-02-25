@@ -11,21 +11,12 @@ addons:
 
 env:
   - GRAILS_VERSION=3.3.9    OS=stretch
-#  - GRAILS_VERSION=3.3.9    OS=stretch-slim
-#  - GRAILS_VERSION=3.3.9    OS=alpine
-  #- GRAILS_VERSION=3.3.9    OS=alpine   ENV=dev
   - GRAILS_VERSION=3.3.8    OS=stretch
-#  - GRAILS_VERSION=3.3.8    OS=stretch-slim
-#  - GRAILS_VERSION=3.3.8    OS=alpine
-#  - GRAILS_VERSION=3.3.8    OS=alpine   ENV=dev
   - GRAILS_VERSION=2.5.5    OS=stretch
-#  - GRAILS_VERSION=2.5.5    OS=stretch-slim
-#  - GRAILS_VERSION=2.5.5    OS=alpine
-#  - GRAILS_VERSION=2.5.5    OS=alpine   ENV=dev
 
 install:
   - pip install --user awscli
-  - export PATH=$PATH:$HOME/.local/bin # put aws in the path
+  - export PATH=$PATH:$HOME/.local/bin
   - docker pull openjdk:8-jdk
 
 before_script:
@@ -47,6 +38,8 @@ after_script:
   - docker images
 
 after_success:
-  - eval $(aws ecr get-login --no-include-email --region sa-east-1) #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
+  - eval $(aws ecr get-login --no-include-email --region sa-east-1)
   - docker tag grails:$IMAGE_TAG $dockerId/grails:$IMAGE_TAG
   - docker push $dockerId/grails:$IMAGE_TAG
+  - echo "$dockerHubPass" | docker login -u "$dockerHubId" --password-stdin
+  - docker push $dockerHubId/grails:$IMAGE_TAG
