@@ -11,6 +11,7 @@ addons:
 
 env:
   - GRAILS_VERSION=3.3.9    OS=stretch
+  - GRAILS_VERSION=3.3.9    OS=stretch-git
   - GRAILS_VERSION=3.3.8    OS=stretch
   - GRAILS_VERSION=2.5.5    OS=stretch
   - GRAILS_VERSION=2.5.5    OS=stretch-git
