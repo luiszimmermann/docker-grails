@@ -10,6 +10,8 @@ addons:
       - python
 
 env:
+  - GRAILS_VERSION=3.3.10   OS=stretch
+  - GRAILS_VERSION=3.3.10   OS=stretch-git
   - GRAILS_VERSION=3.3.9    OS=stretch
   - GRAILS_VERSION=3.3.9    OS=stretch-git
   - GRAILS_VERSION=3.3.8    OS=stretch
