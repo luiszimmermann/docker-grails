@@ -11,21 +11,16 @@ addons:
       - python
 
 env:
-  - GRAILS_VERSION=4.0.0.RC2   OS=stretch
-  - GRAILS_VERSION=3.3.10   OS=stretch
-  - GRAILS_VERSION=3.3.10   OS=stretch-git
-  - GRAILS_VERSION=3.3.9    OS=stretch
-  - GRAILS_VERSION=3.3.9    OS=stretch-git
-  - GRAILS_VERSION=3.3.8    OS=stretch
-  - GRAILS_VERSION=2.5.5    OS=stretch
-  - GRAILS_VERSION=2.5.5    OS=stretch-git
-  - GRAILS_VERSION=2.5.6    OS=stretch
-  - GRAILS_VERSION=2.5.6    OS=stretch-git
+  - GRAILS_VERSION=4.0.0      OS=stretch
+  - GRAILS_VERSION=3.3.10     OS=stretch
+  - GRAILS_VERSION=3.3.9      OS=stretch
+  - GRAILS_VERSION=3.3.8      OS=stretch
+  - GRAILS_VERSION=2.5.6      OS=stretch
 
 install:
   - pip install --user awscli
   - export PATH=$PATH:$HOME/.local/bin
-  - docker pull openjdk:8-jdk
+  - docker pull adoptopenjdk:8-jdk-hotspot
 
 before_script:
   - docker --version
