@@ -11,11 +11,11 @@ addons:
       - python
 
 env:
-  - GRAILS_VERSION=4.0.0      OS=stretch
-  - GRAILS_VERSION=3.3.10     OS=stretch
-  - GRAILS_VERSION=3.3.9      OS=stretch
-  - GRAILS_VERSION=3.3.8      OS=stretch
-  - GRAILS_VERSION=2.5.6      OS=stretch
+  - GRAILS_VERSION=4.0.0      BASE=adoptopenjdk
+  - GRAILS_VERSION=3.3.10     BASE=adoptopenjdk
+  - GRAILS_VERSION=3.3.9      BASE=adoptopenjdk
+  - GRAILS_VERSION=3.3.8      BASE=adoptopenjdk
+  - GRAILS_VERSION=2.5.6      BASE=adoptopenjdk
 
 install:
   - pip install --user awscli
@@ -25,17 +25,11 @@ install:
 before_script:
   - docker --version
   - |
-    if [ -z $ENV ]; then
-      export IMAGE_TAG=$GRAILS_VERSION-$OS
-      docker build -t grails:$GRAILS_VERSION-$OS --build-arg GRAILS_VERSION=$GRAILS_VERSION ./$OS
-    else
-    export IMAGE_TAG=$GRAILS_VERSION-$OS-$ENV
-      docker build -f ./$OS/Dockerfile.dev -t grails:$GRAILS_VERSION-$OS-$ENV --build-arg GRAILS_VERSION=$GRAILS_VERSION ./$OS
-    fi
+    export IMAGE_TAG=$GRAILS_VERSION-$BASE
+    docker build -t grails:$GRAILS_VERSION-$BASE --build-arg GRAILS_VERSION=$GRAILS_VERSION ./$BASE
 
 script:
   - docker run -it --rm --name grails-$IMAGE_TAG grails:$IMAGE_TAG grails --version | grep -q $GRAILS_VERSION
-
 
 after_script:
   - docker images
