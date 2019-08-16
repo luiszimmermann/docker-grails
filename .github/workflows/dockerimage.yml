@@ -1,0 +1,19 @@
+name: Docker Image CI
+
+on:   
+  push:
+    branches:
+    - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        grails_version: [4.0.0, 3.3.10]
+        base: [adoptopenjdk]
+ 
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build the Docker image
+      run: docker build -t grails:{{ matrix.grails_version }}-{{ matrix.base }} --build-arg GRAILS_VERSION={{ matrix.grails_version }} ./{{ matrix.base }}
