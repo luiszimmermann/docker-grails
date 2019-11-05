@@ -1,13 +1,15 @@
 language: bash
-dist: xenial
+dist: bionic
 sudo: required
 services:
   - docker
 
 addons:
   apt:
+    sources:
+      - docker-bionic
     packages:
-      - docker-ce
+      - docker
       - python
 
 env:
