@@ -4,14 +4,6 @@ sudo: required
 services:
   - docker
 
-addons:
-  apt:
-    sources:
-      - docker-bionic
-    packages:
-      - docker
-      - python
-
 env:
   - GRAILS_VERSION=4.0.1      BASE=adoptopenjdk
   - GRAILS_VERSION=4.0.1      BASE=adoptopenjdk-openj9
