@@ -12,10 +12,11 @@ addons:
 
 env:
   - GRAILS_VERSION=4.0.1      BASE=adoptopenjdk
-  - GRAILS_VERSION=4.0.0      BASE=adoptopenjdk
-  - GRAILS_VERSION=4.0.0      BASE=adoptopenjdk-alpine
+  - GRAILS_VERSION=4.0.1      BASE=adoptopenjdk-openj9
+  - GRAILS_VERSION=4.0.1      BASE=adoptopenjdk-alpine
   - GRAILS_VERSION=3.3.11     BASE=adoptopenjdk
-  - GRAILS_VERSION=3.3.10     BASE=adoptopenjdk
+  - GRAILS_VERSION=3.3.11     BASE=adoptopenjdk-openj9
+  - GRAILS_VERSION=3.3.11     BASE=adoptopenjdk-alpine
   - GRAILS_VERSION=2.5.6      BASE=adoptopenjdk
 
 install:
