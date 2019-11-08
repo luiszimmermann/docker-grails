@@ -1,9 +1,10 @@
-FROM adoptopenjdk/openjdk8:alpine-slim
+FROM adoptopenjdk:11-jdk-hotspot
 
-ARG GRAILS_VERSION=3.3.10
+ARG GRAILS_VERSION=4.0.1
 ENV GRAILS_VERSION ${GRAILS_VERSION}
 
-RUN apk --update add --no-cache git wget curl unzip ca-certificates
+RUN apt-get update && apt-get install -y -qq git wget curl unzip ca-certificates && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/lib/jvm
 RUN wget https://github.com/grails/grails-core/releases/download/v$GRAILS_VERSION/grails-$GRAILS_VERSION.zip && \

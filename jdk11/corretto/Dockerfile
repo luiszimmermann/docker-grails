@@ -1,10 +1,11 @@
-FROM adoptopenjdk:8-jdk-hotspot
+FROM amazoncorretto:11
 
-ARG GRAILS_VERSION=3.3.10
+ARG GRAILS_VERSION=4.0.1
 ENV GRAILS_VERSION ${GRAILS_VERSION}
 
-RUN apt-get update && apt-get install -y -qq git wget curl unzip ca-certificates && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN yum install -y git wget curl unzip ca-certificates && \
+    yum clean all && \
+    rm -rf /var/cache/yum
 
 WORKDIR /usr/lib/jvm
 RUN wget https://github.com/grails/grails-core/releases/download/v$GRAILS_VERSION/grails-$GRAILS_VERSION.zip && \

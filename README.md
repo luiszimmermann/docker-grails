@@ -1,2 +1,2 @@
 # Docker Grails
-adoptopenjdk:8-jdk-hotspot with Grails
+jdk8 and jdk11 with Grails

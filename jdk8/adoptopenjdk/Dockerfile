@@ -1,6 +1,6 @@
-FROM adoptopenjdk:8-jdk-openj9
+FROM adoptopenjdk:8-jdk-hotspot
 
-ARG GRAILS_VERSION=3.3.10
+ARG GRAILS_VERSION=4.0.1
 ENV GRAILS_VERSION ${GRAILS_VERSION}
 
 RUN apt-get update && apt-get install -y -qq git wget curl unzip ca-certificates && \
