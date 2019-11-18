@@ -23,4 +23,4 @@ jobs:
       run: docker build -t grails:${{ matrix.grails_version }}-jdk${{ matrix.jdk }}-${{ matrix.base }} --build-arg GRAILS_VERSION=${{ matrix.grails_version }} ./jdk${{ matrix.jdk }}/${{ matrix.base }}
 
     - name: Test the Docker image
-      run: docker run -it --rm --name grails:${{ matrix.grails_version }}-jdk${{ matrix.jdk }}-${{ matrix.base }} grails:${{ matrix.grails_version }}-jdk${{ matrix.jdk }}-${{ matrix.base }} grails --version | grep -q --color=never ${{ matrix.grails_version }}
+      run: docker run --rm --name grails:${{ matrix.grails_version }}-jdk${{ matrix.jdk }}-${{ matrix.base }} grails:${{ matrix.grails_version }}-jdk${{ matrix.jdk }}-${{ matrix.base }} grails --version | grep -q --color=never ${{ matrix.grails_version }}
