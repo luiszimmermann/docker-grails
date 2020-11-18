@@ -5,12 +5,12 @@ services:
   - docker
 
 env:
-  - GRAILS_VERSION=4.0.1      JDK=11      BASE=adoptopenjdk
-  - GRAILS_VERSION=4.0.1      JDK=11      BASE=adoptopenjdk-alpine
-  - GRAILS_VERSION=4.0.1      JDK=11      BASE=corretto
-  - GRAILS_VERSION=4.0.1      JDK=8       BASE=adoptopenjdk
-  - GRAILS_VERSION=4.0.1      JDK=8       BASE=adoptopenjdk-alpine
-  - GRAILS_VERSION=4.0.1      JDK=8       BASE=corretto
+  - GRAILS_VERSION=4.0.5      JDK=11      BASE=adoptopenjdk
+  - GRAILS_VERSION=4.0.5      JDK=11      BASE=adoptopenjdk-alpine
+  - GRAILS_VERSION=4.0.5      JDK=11      BASE=corretto
+  - GRAILS_VERSION=4.0.5      JDK=8       BASE=adoptopenjdk
+  - GRAILS_VERSION=4.0.5      JDK=8       BASE=adoptopenjdk-alpine
+  - GRAILS_VERSION=4.0.5      JDK=8       BASE=corretto
   - GRAILS_VERSION=3.3.11     JDK=8       BASE=adoptopenjdk
   - GRAILS_VERSION=3.3.11     JDK=8       BASE=adoptopenjdk-alpine
   - GRAILS_VERSION=3.3.11     JDK=8       BASE=corretto
