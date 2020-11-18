@@ -1,6 +1,6 @@
 FROM amazoncorretto:11
 
-ARG GRAILS_VERSION=4.0.1
+ARG GRAILS_VERSION=4.0.5
 ENV GRAILS_VERSION ${GRAILS_VERSION}
 
 RUN yum install -y git wget curl unzip ca-certificates && \
