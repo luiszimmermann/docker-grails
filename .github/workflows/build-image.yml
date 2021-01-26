@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        grails_version: [4.0.5, 3.3.11, 2.5.6]
+        grails_version: [4.0.5, 3.3.12, 2.5.6]
         jdk: [8]
         base: [adoptopenjdk, corretto]
     
